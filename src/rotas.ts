@@ -14,4 +14,4 @@ rotas.get('/produtos',produtosController.listar)
 rotas.post('/produtos',produtosController.adicionar)
 
 
-export default rotas
+export default rotas   
