@@ -19,11 +19,23 @@ class CarrinhoController {
         const { usuarioId, produtoId, quantidade } = req.body;
     } 
         //Buscar o produto no banco de dados
+        const produto = await produtosController.buscarPorId(produtoId);
+        if (!produto) {
+            return res.status(404).json({ mensagem: "Produto não encontrado" });
+        }
+        const precoUnitario = produto.preco;
+        const nome = produto.nome;
         //Pegar o preço do produto
         //Pegar o nome do produto
 
 
         // Verificar se um carrinho com o usuário já existe
+        let carrinho = await buscarCarrinhoPorUsuarioId(usuarioId);
+
+        const item: ItemCarrinho = {
+            produtoId,
+            quantidade,
+            precoUnitario
 
         // Se não existir deve criar um novo carrinho
 
